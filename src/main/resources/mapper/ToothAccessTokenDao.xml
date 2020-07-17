@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tooth.dao.ToothAccessTokenDao">
+  <resultMap id="BaseResultMap" type="com.tooth.entity.ToothAccessToken">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="SOE_ID" jdbcType="VARCHAR" property="soeId" />
+    <result column="ACCESS_TOKEN" jdbcType="VARCHAR" property="accessToken" />
+    <result column="CREATED_TIME" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="MODIFIED_TIME" jdbcType="TIMESTAMP" property="modifiedTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, SOE_ID, ACCESS_TOKEN, CREATED_TIME, MODIFIED_TIME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tooth_access_token
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tooth_access_token
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="ID" keyProperty="id" parameterType="com.tooth.entity.ToothAccessToken" useGeneratedKeys="true">
+    insert into tooth_access_token (SOE_ID, ACCESS_TOKEN, CREATED_TIME, 
+      MODIFIED_TIME)
+    values (#{soeId,jdbcType=VARCHAR}, #{accessToken,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, 
+      #{modifiedTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" keyColumn="ID" keyProperty="id" parameterType="com.tooth.entity.ToothAccessToken" useGeneratedKeys="true">
+    insert into tooth_access_token
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="soeId != null">
+        SOE_ID,
+      </if>
+      <if test="accessToken != null">
+        ACCESS_TOKEN,
+      </if>
+      <if test="createdTime != null">
+        CREATED_TIME,
+      </if>
+      <if test="modifiedTime != null">
+        MODIFIED_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="soeId != null">
+        #{soeId,jdbcType=VARCHAR},
+      </if>
+      <if test="accessToken != null">
+        #{accessToken,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null">
+        #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tooth.entity.ToothAccessToken">
+    update tooth_access_token
+    <set>
+      <if test="soeId != null">
+        SOE_ID = #{soeId,jdbcType=VARCHAR},
+      </if>
+      <if test="accessToken != null">
+        ACCESS_TOKEN = #{accessToken,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null">
+        MODIFIED_TIME = #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tooth.entity.ToothAccessToken">
+    update tooth_access_token
+    set SOE_ID = #{soeId,jdbcType=VARCHAR},
+      ACCESS_TOKEN = #{accessToken,jdbcType=VARCHAR},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      MODIFIED_TIME = #{modifiedTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,7 @@
+#hikariCP≈‰÷√
+spring:
+  datasource:
+    tooth:
+      url: jdbc:mysql://49.233.89.163:3306/ziyun-iot?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=Asia/Shanghai&allowMultiQueries=true
+      username: root
+      password: Pass1234!

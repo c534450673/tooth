@@ -1,0 +1,31 @@
+server:
+  port: 8893
+  servlet:
+    context-path: /tooth
+  tomcat:
+    max-connections: 1000
+    max-threads: 1000
+    accept-count: 1000
+spring:
+  profiles:
+    active: dev
+  datasource:
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 500
+      idle-timeout: 300000
+      leak-detection-threshold: 30000
+      connection-test-query: SELECT 1 FROM DUAL
+mybatis:
+  mapper-locations:
+    tooth: classpath*:/mapper/*.xml
+http:
+  client:
+    timeToLive: 30
+    maxTotal: 500
+    defaultMaxPerRoute: 500
+    retryHandler: 2
+    isRetry: true
+    connectionRequestTimeout: 5000
+    connectTimeout: 5000
+    readTimeout: 5000
