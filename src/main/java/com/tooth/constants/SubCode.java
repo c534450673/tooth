@@ -5,6 +5,11 @@ package com.tooth.constants;
  */
 public enum SubCode {
 
+    /**
+     * 需要邮箱或者手机号
+     */
+    REQUIRED_EMAIL_OR_PHONE("c400_9"),
+
     PARAMETERS_FAILED("C400_8"),
     /**
      * 参数缺失

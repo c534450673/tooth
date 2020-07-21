@@ -14,4 +14,5 @@ public interface ToothManagerDao {
     int updateByPrimaryKeySelective(ToothManager record);
 
     int updateByPrimaryKey(ToothManager record);
+    
 }

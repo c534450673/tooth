@@ -2,6 +2,8 @@ package com.tooth.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+
+import com.tooth.model.BaseModel;
 import lombok.Data;
 
 /**
@@ -9,7 +11,7 @@ import lombok.Data;
  * @author 
  */
 @Data
-public class ToothCustomerPicMapping implements Serializable {
+public class ToothCustomerPicMapping extends BaseModel<ToothCustomerPicMapping> implements Serializable {
     private String soeId;
 
     private String userName;
