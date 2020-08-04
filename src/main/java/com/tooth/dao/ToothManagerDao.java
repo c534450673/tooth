@@ -23,7 +23,7 @@ public interface ToothManagerDao {
      * @date 2020/8/4
       * @param toothManager
      * @return com.tooth.entity.ToothManager
-     * @company 和合信诺
+     * @company own
     */
     ToothManager findToothManager(ToothManager toothManager);
     

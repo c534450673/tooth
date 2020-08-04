@@ -10,7 +10,7 @@ import java.security.NoSuchAlgorithmException;
  * @author subo.zhang
  * @description
  * @date 2020/8/4
- * @company 和合信诺
+ * @company own
  */
 public class Md5PasswdUtils {
 
