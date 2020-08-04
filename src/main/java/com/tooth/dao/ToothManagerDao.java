@@ -1,7 +1,9 @@
 package com.tooth.dao;
 
 import com.tooth.entity.ToothManager;
+import org.apache.ibatis.annotations.Mapper;
 
+@Mapper
 public interface ToothManagerDao {
     int deleteByPrimaryKey(String soeId);
 
@@ -14,5 +16,15 @@ public interface ToothManagerDao {
     int updateByPrimaryKeySelective(ToothManager record);
 
     int updateByPrimaryKey(ToothManager record);
+
+    /**
+     * 功能描述 查询管理员
+     * @author subo.zhang
+     * @date 2020/8/4
+      * @param toothManager
+     * @return com.tooth.entity.ToothManager
+     * @company 和合信诺
+    */
+    ToothManager findToothManager(ToothManager toothManager);
     
 }

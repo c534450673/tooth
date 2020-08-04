@@ -32,7 +32,7 @@ public class ValidationHandler implements ExceptionMapper<ConstraintViolationExc
     @Override
     public Response toResponse(ConstraintViolationException exception) {
         Set<ConstraintViolation<?>> constraintViolations = exception.getConstraintViolations();
-        ResponseDTO response = new ResponseDTO<>(Code.PARAMETER_VERIFY_FAILED.value(), Message.PARAMS_VALIDATION_FAILED.value());
+        ResponseDTO<?> response = new ResponseDTO(Code.PARAMETER_VERIFY_FAILED.value(), Message.PARAMS_VALIDATION_FAILED.value());
         response.setSubCode(SubCode.PARAMETERS_FAILED.value());
         response.setMessage(formatMessage(constraintViolations));
         String result;

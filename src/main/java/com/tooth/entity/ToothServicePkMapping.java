@@ -1,17 +1,16 @@
 package com.tooth.entity;
 
+import lombok.Data;
+
 import java.io.Serializable;
 import java.util.Date;
-
-import com.tooth.model.BaseModel;
-import lombok.Data;
 
 /**
  * tooth_customer
  * @author 
  */
 @Data
-public class ToothServicePkMapping extends BaseModel<ToothServicePkMapping> implements Serializable {
+public class ToothServicePkMapping implements Serializable {
     private String soeId;
 
     private String userName;

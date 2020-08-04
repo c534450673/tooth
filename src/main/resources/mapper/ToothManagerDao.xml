@@ -12,136 +12,35 @@
     <result column="MODIFIED_TIME" jdbcType="TIMESTAMP" property="modifiedTime" />
     <result column="MODIFY_BY" jdbcType="VARCHAR" property="modifyBy" />
     <result column="STATUS" jdbcType="CHAR" property="status" />
+    <result column="PASSWD" jdbcType="VARCHAR" property="passwd"/>
   </resultMap>
   <sql id="Base_Column_List">
     SOE_ID, USER_NAME, `NAME`, PHONE_NUM, EMAIL, CREATED_TIME, CREATE_BY, MODIFIED_TIME, 
-    MODIFY_BY, `STATUS`
+    MODIFY_BY, `STATUS`,PASSWD
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from tooth_customer
-    where SOE_ID = #{soeId,jdbcType=VARCHAR}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from tooth_customer
-    where SOE_ID = #{soeId,jdbcType=VARCHAR}
-  </delete>
   <insert id="insert" keyColumn="SOE_ID" keyProperty="soeId" parameterType="com.tooth.entity.ToothManager" useGeneratedKeys="true">
     insert into tooth_customer (USER_NAME, `NAME`, PHONE_NUM, 
       EMAIL, CREATED_TIME, CREATE_BY, 
-      MODIFIED_TIME, MODIFY_BY, `STATUS`
+      MODIFIED_TIME, MODIFY_BY, `STATUS`, PASSWD
       )
     values (#{userName,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{phoneNum,jdbcType=VARCHAR}, 
       #{email,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=VARCHAR}, 
-      #{modifiedTime,jdbcType=TIMESTAMP}, #{modifyBy,jdbcType=VARCHAR}, #{status,jdbcType=CHAR}
+      #{modifiedTime,jdbcType=TIMESTAMP}, #{modifyBy,jdbcType=VARCHAR}, #{status,jdbcType=CHAR}, #{passwd,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" keyColumn="SOE_ID" keyProperty="soeId" parameterType="com.tooth.entity.ToothManager" useGeneratedKeys="true">
-    insert into tooth_customer
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="userName != null">
-        USER_NAME,
+  <select id="findToothManager" resultMap="BaseResultMap" parameterType="com.tooth.entity.ToothManager">
+    select <include refid="Base_Column_List"/> from tooth_customer
+    <where>
+      1 = 1
+      <if test="toothManager.userName != null and toothManager.userName != ''">
+        and USER_NAME = #{toothManager.userName}
       </if>
-      <if test="name != null">
-        `NAME`,
+      <if test="toothManager.phoneNum != null and toothManager.phoneNum != ''">
+        and PHONE_NUM = #{toothManager.userName}
       </if>
-      <if test="phoneNum != null">
-        PHONE_NUM,
+      <if test="toothManager.email != null and toothManager.email != ''">
+        and EMAIL = #{toothManager.email}
       </if>
-      <if test="email != null">
-        EMAIL,
-      </if>
-      <if test="createdTime != null">
-        CREATED_TIME,
-      </if>
-      <if test="createBy != null">
-        CREATE_BY,
-      </if>
-      <if test="modifiedTime != null">
-        MODIFIED_TIME,
-      </if>
-      <if test="modifyBy != null">
-        MODIFY_BY,
-      </if>
-      <if test="status != null">
-        `STATUS`,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="userName != null">
-        #{userName,jdbcType=VARCHAR},
-      </if>
-      <if test="name != null">
-        #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="phoneNum != null">
-        #{phoneNum,jdbcType=VARCHAR},
-      </if>
-      <if test="email != null">
-        #{email,jdbcType=VARCHAR},
-      </if>
-      <if test="createdTime != null">
-        #{createdTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="createBy != null">
-        #{createBy,jdbcType=VARCHAR},
-      </if>
-      <if test="modifiedTime != null">
-        #{modifiedTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="modifyBy != null">
-        #{modifyBy,jdbcType=VARCHAR},
-      </if>
-      <if test="status != null">
-        #{status,jdbcType=CHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.tooth.entity.ToothManager">
-    update tooth_customer
-    <set>
-      <if test="userName != null">
-        USER_NAME = #{userName,jdbcType=VARCHAR},
-      </if>
-      <if test="name != null">
-        `NAME` = #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="phoneNum != null">
-        PHONE_NUM = #{phoneNum,jdbcType=VARCHAR},
-      </if>
-      <if test="email != null">
-        EMAIL = #{email,jdbcType=VARCHAR},
-      </if>
-      <if test="createdTime != null">
-        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="createBy != null">
-        CREATE_BY = #{createBy,jdbcType=VARCHAR},
-      </if>
-      <if test="modifiedTime != null">
-        MODIFIED_TIME = #{modifiedTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="modifyBy != null">
-        MODIFY_BY = #{modifyBy,jdbcType=VARCHAR},
-      </if>
-      <if test="status != null">
-        `STATUS` = #{status,jdbcType=CHAR},
-      </if>
-    </set>
-    where SOE_ID = #{soeId,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.tooth.entity.ToothManager">
-    update tooth_customer
-    set USER_NAME = #{userName,jdbcType=VARCHAR},
-      `NAME` = #{name,jdbcType=VARCHAR},
-      PHONE_NUM = #{phoneNum,jdbcType=VARCHAR},
-      EMAIL = #{email,jdbcType=VARCHAR},
-      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
-      CREATE_BY = #{createBy,jdbcType=VARCHAR},
-      MODIFIED_TIME = #{modifiedTime,jdbcType=TIMESTAMP},
-      MODIFY_BY = #{modifyBy,jdbcType=VARCHAR},
-      `STATUS` = #{status,jdbcType=CHAR}
-    where SOE_ID = #{soeId,jdbcType=VARCHAR}
-  </update>
+    </where>
+  </select>
 </mapper>

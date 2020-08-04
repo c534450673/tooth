@@ -16,6 +16,7 @@ public class BaseException extends RuntimeException {
     private String subErrorCode;
     private String errorMessage;
 
+    @Override
     public String getMessage() {
         return errorMessage;
     }

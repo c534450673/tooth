@@ -27,7 +27,7 @@ import javax.ws.rs.ext.Provider;
 @Provider
 public class ExceptionHandler implements ExceptionMapper<Exception> {
 
-    private Logger LOG = LoggerFactory.getLogger(getClass());
+    private Logger logger = LoggerFactory.getLogger(getClass());
 
     @Autowired
     private ObjectMapper mapper;
@@ -41,7 +41,7 @@ public class ExceptionHandler implements ExceptionMapper<Exception> {
             response.setSubCode(bException.getSubErrorCode());
             response.setMessage(bException.getErrorMessage());
         }else{
-            LOG.error(exception.getMessage(), exception);
+            logger.error(exception.getMessage(), exception);
             if (exception instanceof NotAllowedException) {
                 // 405异常
                 return Response.status(405).entity(exception.getMessage()).build();
@@ -58,7 +58,7 @@ public class ExceptionHandler implements ExceptionMapper<Exception> {
         try {
             result = mapper.writeValueAsString(response);
         } catch (JsonProcessingException e) {
-            LOG.error(e.getMessage(), e);
+            logger.error(e.getMessage(), e);
             return Response.status(response.getCode()).entity(Message.SYSTEM_ERROR.value()).build();
         }
         return Response.ok(result).build();

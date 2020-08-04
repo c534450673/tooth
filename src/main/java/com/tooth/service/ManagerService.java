@@ -3,7 +3,9 @@ package com.tooth.service;
 import com.tooth.api.vo.ManagerInfo;
 import org.springframework.stereotype.Service;
 
-@Service
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
+
 public interface ManagerService {
 
     /**
@@ -14,6 +16,6 @@ public interface ManagerService {
      * @return java.lang.Boolean
      * @company own
     */
-    Boolean registerManager(ManagerInfo managerInfo);
+    Boolean registerManager(ManagerInfo managerInfo) throws UnsupportedEncodingException, NoSuchAlgorithmException;
 
 }

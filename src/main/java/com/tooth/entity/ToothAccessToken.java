@@ -1,17 +1,16 @@
 package com.tooth.entity;
 
+import lombok.Data;
+
 import java.io.Serializable;
 import java.util.Date;
-
-import com.tooth.model.BaseModel;
-import lombok.Data;
 
 /**
  * tooth_access_token
  * @author 
  */
 @Data
-public class ToothAccessToken extends BaseModel<ToothAccessToken> implements Serializable {
+public class ToothAccessToken implements Serializable {
     private Integer id;
 
     private String soeId;

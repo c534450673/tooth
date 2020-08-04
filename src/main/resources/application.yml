@@ -29,3 +29,5 @@ http:
     connectionRequestTimeout: 5000
     connectTimeout: 5000
     readTimeout: 5000
+logging:
+  config: classpath:log4j2.xml

@@ -11,6 +11,11 @@ public enum SubCode {
     REQUIRED_EMAIL_OR_PHONE("c400_9"),
 
     PARAMETERS_FAILED("C400_8"),
+
+    /**
+     * 参数重复
+     */
+    REPEAT_PARAM("C400_10"),
     /**
      * 参数缺失
      */
